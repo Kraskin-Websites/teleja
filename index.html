@@ -11,57 +11,174 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --primary-light: #fbbf24;
+            --dark: #0f172a;
+            --dark-2: #1e293b;
+            --dark-3: #334155;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+            --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.10);
+            --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.15);
+            --radius: 16px;
         }
 
-        /* Header */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        img, svg, video, canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== HEADER ===== */
         header {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        header.scrolled {
+            background: rgba(15, 23, 42, 0.97);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
         }
 
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #1a1a1a;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .logo span {
+            color: var(--primary-light);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
         nav a {
-            color: #1a1a1a;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            margin-left: 30px;
+            padding: 0.6rem 1.1rem;
+            border-radius: 10px;
             font-weight: 600;
+            font-size: 0.92rem;
             transition: all 0.3s ease;
         }
 
         nav a:hover {
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            color: var(--white);
+            background: rgba(245, 158, 11, 0.15);
         }
 
-        /* Hero Section */
+        nav a.nav-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--dark);
+            margin-left: 0.5rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+        }
+
+        nav a.nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            padding: 60px 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #0f172a 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 8rem 1.5rem 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -69,110 +186,325 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: pulse 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .hero-road {
+            position: absolute;
+            bottom: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="1200" height="600" fill="url(%23dots)"/></svg>');
-            opacity: 0.5;
+            height: 8px;
+            background: repeating-linear-gradient(90deg, var(--primary) 0px, var(--primary) 40px, transparent 40px, transparent 80px);
+            opacity: 0.4;
         }
 
         .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--primary-light);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.3rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(245, 158, 11, 0.6);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.2rem;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats {
+            background: var(--white);
+            padding: 3rem 1.5rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ===== SECTIONS ===== */
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 5rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header h2 span {
+            color: var(--primary-dark);
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-section {
+            background: var(--light);
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid var(--gray-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.3rem;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(251, 191, 36, 0.08) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.08);
+        }
+
+        .service-card h3 {
+            color: var(--dark);
+            margin-bottom: 0.7rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* ===== CALC FORM ===== */
+        .calc-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calc-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+        }
+
+        .calc-section .section-header h2 {
+            color: var(--white);
+        }
+
+        .calc-section .section-header p {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .form-section {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
             position: relative;
             z-index: 2;
         }
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #1a1a1a;
-            border: none;
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* Services Section */
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .service-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .service-card h3 {
-            color: #FFD700;
-            margin-bottom: 10px;
-        }
-
-        /* Form Section */
-        .form-section {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            margin: 40px 0;
-        }
-
-        .form-section h2 {
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            font-size: 32px;
-            text-align: center;
-        }
-
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.3rem;
         }
 
         .form-group {
@@ -180,294 +512,587 @@
             flex-direction: column;
         }
 
-        label {
+        .form-group label {
             font-weight: 600;
-            margin-bottom: 8px;
-            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .form-group label .req {
+            color: var(--error);
         }
 
         input, select, textarea {
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
             font-family: inherit;
+            background: var(--white);
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #FFD700;
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12);
         }
 
         /* Material Selection */
+        .material-label {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 0.9rem;
+            display: block;
+        }
+
         .material-selection {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
         }
 
         .material-option {
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 14px;
             cursor: pointer;
             text-align: center;
             transition: all 0.3s ease;
-            background: white;
+            background: var(--white);
         }
 
         .material-option:hover {
-            border-color: #FFD700;
-            background: #fffbf0;
+            border-color: var(--primary);
+            background: #fffbeb;
+            transform: translateY(-3px);
         }
 
         .material-option.selected {
-            border-color: #FFD700;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #1a1a1a;
-            font-weight: bold;
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
+            transform: translateY(-3px);
         }
 
-        /* Display Results */
+        .material-option.selected strong {
+            color: var(--dark);
+        }
+
+        .material-option .mat-icon {
+            font-size: 2.4rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .material-option strong {
+            display: block;
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .material-option p {
+            font-size: 0.78rem;
+            color: var(--gray);
+            margin-top: 0.2rem;
+        }
+
+        .address-display {
+            margin-top: 8px;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            display: none;
+            font-size: 0.88rem;
+            border: 1px solid transparent;
+        }
+
+        .address-display.success {
+            background: #ecfdf5;
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #065f46;
+        }
+
+        .address-display.error {
+            background: #fef2f2;
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #991b1b;
+        }
+
+        /* Results Display */
         .results-display {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 2px solid var(--primary-light);
+            padding: 1.8rem;
+            border-radius: var(--radius);
+            margin: 1.8rem 0;
             text-align: center;
-            color: #1a1a1a;
-            font-weight: bold;
-            font-size: 18px;
+            color: var(--dark);
             display: none;
         }
 
         .results-display.show {
             display: block;
-            animation: slideIn 0.3s ease;
+            animation: slideIn 0.4s ease;
         }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .result-item {
-            margin: 10px 0;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .result-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-top: 0.5rem;
         }
 
         /* Submit Button */
         .submit-section {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 2rem;
         }
 
         button[type="submit"] {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #1a1a1a;
+            width: 100%;
+            max-width: 400px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: var(--white);
             border: none;
-            padding: 15px 50px;
-            font-size: 18px;
-            font-weight: bold;
+            padding: 1.1rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.35);
         }
 
         button[type="submit"]:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.5);
         }
 
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 40px 20px;
+        /* ===== HOW IT WORKS ===== */
+        .how-section {
+            background: var(--white);
+        }
+
+        .process-steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
             text-align: center;
-            margin-top: 60px;
+            padding: 1.5rem 1rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0 auto 1.2rem;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+        }
+
+        .step h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 1.5rem 1.5rem;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            text-align: left;
-            margin-bottom: 30px;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 340px;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .footer-section h3 {
-            color: #FFD700;
-            margin-bottom: 15px;
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
         }
 
         .footer-section p {
-            opacity: 0.8;
-            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 2;
+            font-size: 0.92rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-light);
         }
 
         .footer-bottom {
-            border-top: 1px solid #FFD700;
-            padding-top: 20px;
-            opacity: 0.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Responsive */
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.6rem;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ===== RESPONSIVO ===== */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                gap: 1rem;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                font-size: 1.2rem;
+                color: var(--white);
+            }
+
+            .material-selection {
+                grid-template-columns: 1fr;
             }
 
             .form-grid {
                 grid-template-columns: 1fr;
             }
 
-            nav a {
-                margin-left: 15px;
-                font-size: 14px;
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                padding: 1.5rem;
+            }
+
+            .form-section {
+                padding: 1.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="header-container">
-            <div class="logo">🚚 TELE JÁ EXPRESS</div>
-            <nav>
+            <a href="#inicio" class="logo">
+                <div class="logo-icon">🚚</div>
+                TELE<span>JÁ</span>
+            </a>
+            <nav id="navMenu">
                 <a href="#inicio">Início</a>
                 <a href="#servicos">Serviços</a>
-                <a href="#calculo">Calcular Frete</a>
-                <a href="#contato">Contato</a>
+                <a href="#como">Como Funciona</a>
+                <a href="#calculo" class="nav-cta">Calcular Frete</a>
             </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
+        <div class="hero-road"></div>
         <div class="hero-content">
-            <h1>Entregas Rápidas e Seguras</h1>
-            <p>Calcule seu frete em segundos e envie com confiança</p>
-            <button class="cta-button" onclick="document.getElementById('calculo').scrollIntoView({behavior: 'smooth'})">Calcular Frete Agora</button>
+            <div class="hero-badge">⚡ Entrega em toda a região metropolitana</div>
+            <h1>Sua entrega <span>rápida e segura</span>, na porta certa</h1>
+            <p>Calcule seu frete em segundos, acompanhe sua encomenda e receba com total confiança. Tele Já Express — a velocidade que seu negócio precisa.</p>
+            <div class="hero-buttons">
+                <a href="#calculo" class="btn-primary">⚡ Calcular Frete Agora</a>
+                <a href="#servicos" class="btn-secondary">Ver Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">5000+</span>
+                <span class="stat-label">Entregas Realizadas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Clientes Satisfeitos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">30min</span>
+                <span class="stat-label">Tempo Médio</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Atendimento</span>
+            </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="servicos" class="container">
-        <h2 style="text-align: center; font-size: 32px; margin-bottom: 30px; color: #1a1a1a;">Nossos Serviços</h2>
-        <div class="services">
-            <div class="service-card">
-                <div class="service-icon">✉️</div>
-                <h3>Envelope</h3>
-                <p>Ideal para documentos e correspondências. Rápido e econômico.</p>
+    <section id="servicos" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos <span>Serviços</span></h2>
+                <p>Soluções completas de entrega para você e seu negócio</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">📦</div>
-                <h3>Pacote</h3>
-                <p>Para pequenos itens e produtos. Embalagem segura garantida.</p>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">✉️</div>
+                    <h3>Envelope</h3>
+                    <p>Ideal para documentos e correspondências. Rápido, prático e econômico.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Pacote</h3>
+                    <p>Para pequenos itens e produtos. Embalagem segura e rastreamento garantido.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📫</div>
+                    <h3>Caixa Pesada</h3>
+                    <p>Até 15 quilos. Perfeito para produtos maiores e mais pesados, com total cuidado.</p>
+                </div>
             </div>
-            <div class="service-card">
-                <div class="service-icon">📫</div>
-                <h3>Caixa Pesada</h3>
-                <p>Até 15 kilos. Perfeito para produtos maiores e mais pesados.</p>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="como" class="how-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como <span>Funciona</span></h2>
+                <p>Em 4 passos simples, sua entrega está a caminho</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Calcule o Frete</h3>
+                    <p>Informe os CEPs e veja o valor instantaneamente</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Solicite via WhatsApp</h3>
+                    <p>Envie sua solicitação com um clique</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Motoboy a Caminho</h3>
+                    <p>Coleta rápida no endereço indicado</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Entrega Concluída</h3>
+                    <p>Recebimento confirmado com segurança</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Calculation Form -->
-    <section id="calculo" class="container">
-        <div class="form-section">
-            <h2>Calcule seu Frete</h2>
-            <form id="freteForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="nome">Nome Completo *</label>
-                        <input type="text" id="nome" name="nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telefone">Telefone/WhatsApp *</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
-                    </div>
-                </div>
-
-                <div style="margin: 30px 0;">
-                    <label style="display: block; margin-bottom: 15px; font-weight: 600; color: #1a1a1a;">Tipo de Material *</label>
-                    <div class="material-selection">
-                        <div class="material-option" onclick="selectMaterial('envelope', this)">
-                            <div style="font-size: 32px; margin-bottom: 10px;">✉️</div>
-                            <strong>Envelope</strong>
-                            <p style="font-size: 12px; margin-top: 5px;">Sem taxa extra</p>
+    <section id="calculo" class="calc-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Calcule seu <span>Frete</span></h2>
+                <p>Preencha os dados abaixo e receba o valor em segundos</p>
+            </div>
+            <div class="form-section">
+                <form id="freteForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo <span class="req">*</span></label>
+                            <input type="text" id="nome" name="nome" required>
                         </div>
-                        <div class="material-option" onclick="selectMaterial('pacote', this)">
-                            <div style="font-size: 32px; margin-bottom: 10px;">📦</div>
-                            <strong>Pacote</strong>
-                            <p style="font-size: 12px; margin-top: 5px;">+R$ 0,50/km</p>
-                        </div>
-                        <div class="material-option" onclick="selectMaterial('caixa', this)">
-                            <div style="font-size: 32px; margin-bottom: 10px;">📫</div>
-                            <strong>Caixa Pesada</strong>
-                            <p style="font-size: 12px; margin-top: 5px;">+R$ 1,00/km</p>
+                        <div class="form-group">
+                            <label for="telefone">Telefone/WhatsApp <span class="req">*</span></label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
                         </div>
                     </div>
-                    <input type="hidden" id="material" name="material" required>
-                </div>
 
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="pickupCep">CEP de Coleta *</label>
-                        <input type="text" id="pickupCep" name="pickupCep" placeholder="CEP: 00000-000" required>
-                        <div id="pickupAddressDisplay" style="margin-top: 8px; padding: 10px; border-radius: 5px; background: #f0f0f0; display: none; font-size: 14px; color: #333;"></div>
+                    <div style="margin: 1.8rem 0;">
+                        <span class="material-label">Tipo de Material <span class="req">*</span></span>
+                        <div class="material-selection">
+                            <div class="material-option" onclick="selectMaterial('envelope', this)">
+                                <span class="mat-icon">✉️</span>
+                                <strong>Envelope</strong>
+                                <p>Sem taxa extra</p>
+                            </div>
+                            <div class="material-option" onclick="selectMaterial('pacote', this)">
+                                <span class="mat-icon">📦</span>
+                                <strong>Pacote</strong>
+                                <p>+R$ 0,50/km</p>
+                            </div>
+                            <div class="material-option" onclick="selectMaterial('caixa', this)">
+                                <span class="mat-icon">📫</span>
+                                <strong>Caixa Pesada</strong>
+                                <p>+R$ 1,00/km</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="material" name="material" required>
                     </div>
-                    <div class="form-group">
-                        <label for="pickupNumber">Número de Coleta *</label>
-                        <input type="text" id="pickupNumber" name="pickupNumber" placeholder="Número" required>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="pickupCep">CEP de Coleta <span class="req">*</span></label>
+                            <input type="text" id="pickupCep" name="pickupCep" placeholder="00000-000" required>
+                            <div id="pickupAddressDisplay" class="address-display"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickupNumber">Número de Coleta <span class="req">*</span></label>
+                            <input type="text" id="pickupNumber" name="pickupNumber" placeholder="Número" required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="destinationCep">CEP de Destino *</label>
-                        <input type="text" id="destinationCep" name="destinationCep" placeholder="CEP: 00000-000" required>
-                        <div id="destinationAddressDisplay" style="margin-top: 8px; padding: 10px; border-radius: 5px; background: #f0f0f0; display: none; font-size: 14px; color: #333;"></div>
+                    <div class="form-grid" style="margin-top: 1.3rem;">
+                        <div class="form-group">
+                            <label for="destinationCep">CEP de Destino <span class="req">*</span></label>
+                            <input type="text" id="destinationCep" name="destinationCep" placeholder="00000-000" required>
+                            <div id="destinationAddressDisplay" class="address-display"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="destinationNumber">Número de Destino <span class="req">*</span></label>
+                            <input type="text" id="destinationNumber" name="destinationNumber" placeholder="Número" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="destinationNumber">Número de Destino *</label>
-                        <input type="text" id="destinationNumber" name="destinationNumber" placeholder="Número" required>
+
+                    <div class="form-group" style="margin-top: 1.3rem;">
+                        <label for="observacoes">Observações</label>
+                        <textarea id="observacoes" name="observacoes" rows="4" placeholder="Informações adicionais sobre a entrega"></textarea>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="observacoes">Observações</label>
-                    <textarea id="observacoes" name="observacoes" rows="4" placeholder="Informações adicionais sobre a entrega"></textarea>
-                </div>
+                    <!-- Results Display -->
+                    <div id="resultsDisplay" class="results-display">
+                        <div class="result-item">📍 Distância estimada</div>
+                        <div class="result-item"><strong><span id="distanceResult">0</span> km</strong></div>
+                        <div class="result-item result-price">💰 <span id="priceResult">R$ 0,00</span></div>
+                    </div>
 
-                <!-- Results Display -->
-                <div id="resultsDisplay" class="results-display">
-                    <div class="result-item">📍 Distância: <span id="distanceResult">0</span> km</div>
-                    <div class="result-item">💰 Valor Total: <span id="priceResult">R$ 0,00</span></div>
-                </div>
-
-                <div class="submit-section">
-                    <button type="submit" class="cta-button">Solicitar Entrega via WhatsApp</button>
-                </div>
-            </form>
+                    <div class="submit-section">
+                        <button type="submit">📱 Solicitar Entrega via WhatsApp</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="contato">
         <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#inicio" class="logo">
+                    <div class="logo-icon">🚚</div>
+                    TELE<span>JÁ</span>
+                </a>
+                <p>Entregas rápidas e seguras em toda a região metropolitana. Conectando seu negócio aos seus clientes com agilidade.</p>
+            </div>
             <div class="footer-section">
                 <h3>Contato</h3>
                 <p>📞 (11) 99999-9999</p>
@@ -480,17 +1105,14 @@
                 <p>Sábado: 08h às 20h</p>
                 <p>Domingo: 10h às 18h</p>
             </div>
-            <div class="footer-section">
-                <h3>Redes Sociais</h3>
-                <p><a href="#" style="color: #FFD700; text-decoration: none;">Facebook</a></p>
-                <p><a href="#" style="color: #FFD700; text-decoration: none;">Instagram</a></p>
-                <p><a href="#" style="color: #FFD700; text-decoration: none;">WhatsApp</a></p>
-            </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2024 Tele Já Express. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">💬</a>
 
     <script>
         let selectedMaterial = null;
@@ -502,19 +1124,42 @@
             'caixa': 1.00
         };
 
+        // ===== HEADER SCROLL =====
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         function selectMaterial(material, element) {
             selectedMaterial = material;
             document.getElementById('material').value = material;
-            
-            // Remove selected class from all options
+
             document.querySelectorAll('.material-option').forEach(opt => {
                 opt.classList.remove('selected');
             });
-            
-            // Add selected class to clicked option
+
             element.classList.add('selected');
-            
-            // Recalculate if both CEPs are filled
+
             if (document.getElementById('pickupCep').value && document.getElementById('destinationCep').value) {
                 calculateDistance();
             }
@@ -530,25 +1175,22 @@
                 const displayElement = document.getElementById(type === 'pickup' ? 'pickupAddressDisplay' : 'destinationAddressDisplay');
 
                 if (data.erro) {
-                    displayElement.innerHTML = '❌ CEP nao encontrado';
+                    displayElement.className = 'address-display error';
+                    displayElement.innerHTML = '❌ CEP não encontrado';
                     displayElement.style.display = 'block';
-                    displayElement.style.background = '#ffebee';
-                    displayElement.style.color = '#c62828';
                     return;
                 }
 
-                const street = data.logradouro || 'Rua nao identificada';
+                const street = data.logradouro || 'Rua não identificada';
                 const neighborhood = data.bairro || '';
                 const city = data.localidade || '';
                 const state = data.uf || '';
                 const fullAddress = `${street}${neighborhood ? ', ' + neighborhood : ''} - ${city}, ${state}`;
 
+                displayElement.className = 'address-display success';
                 displayElement.innerHTML = `✅ <strong>${fullAddress}</strong>`;
                 displayElement.style.display = 'block';
-                displayElement.style.background = '#e8f5e9';
-                displayElement.style.color = '#2e7d32';
 
-                // Store address for form submission
                 if (type === 'pickup') {
                     pickupAddress = fullAddress;
                 } else {
@@ -561,12 +1203,20 @@
             } catch (error) {
                 console.error('Erro ao buscar endereco:', error);
                 const displayElement = document.getElementById(type === 'pickup' ? 'pickupAddressDisplay' : 'destinationAddressDisplay');
-                displayElement.innerHTML = '⚠️ Erro ao buscar endereco';
+                displayElement.className = 'address-display error';
+                displayElement.innerHTML = '⚠️ Erro ao buscar endereço';
                 displayElement.style.display = 'block';
-                displayElement.style.background = '#fff3e0';
-                displayElement.style.color = '#e65100';
             }
         }
+
+        // Format phone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+            if (v.length > 7) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+            else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+            else if (v.length > 0) v = `(${v}`;
+            e.target.value = v;
+        });
 
         document.getElementById('pickupCep').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
@@ -574,7 +1224,7 @@
                 value = value.slice(0, 5) + '-' + value.slice(5, 8);
             }
             e.target.value = value;
-            
+
             if (value.length === 9) {
                 fetchAndDisplayAddress(value, 'pickup');
             }
@@ -586,13 +1236,12 @@
                 value = value.slice(0, 5) + '-' + value.slice(5, 8);
             }
             e.target.value = value;
-            
+
             if (value.length === 9) {
                 fetchAndDisplayAddress(value, 'destination');
             }
         });
 
-        // Calculate distance when CEPs change
         document.getElementById('pickupCep').addEventListener('change', calculateDistance);
         document.getElementById('destinationCep').addEventListener('change', calculateDistance);
         document.getElementById('pickupNumber').addEventListener('change', calculateDistance);
@@ -610,7 +1259,6 @@
             }
 
             try {
-                // Fetch coordinates from ViaCEP
                 const [pickupRes, destRes] = await Promise.all([
                     fetch(`https://viacep.com.br/ws/${pickupCep}/json/`),
                     fetch(`https://viacep.com.br/ws/${destinationCep}/json/`)
@@ -624,9 +1272,6 @@
                     return;
                 }
 
-                // ViaCEP doesn't provide lat/lon. Using mock coordinates for demonstration
-                // In a real app, you'd use a Geocoding API like Google Maps or OpenStreetMap
-                // For this demo, we'll generate consistent random-ish coordinates based on CEP
                 const getCoords = (cep) => {
                     const seed = parseInt(cep.replace(/\D/g, ''));
                     return {
@@ -639,19 +1284,16 @@
                 const destCoords = getCoords(destinationCep);
 
                 const distance = calculateHaversine(pickupCoords.lat, pickupCoords.lng, destCoords.lat, destCoords.lng);
-                
-                // Calculate price
+
                 const basePricePerKm = 2.00;
                 const materialExtra = materialPrices[selectedMaterial] || 0;
                 const pricePerKm = basePricePerKm + materialExtra;
                 const totalPrice = Math.max(12, distance * pricePerKm);
 
-                // Update display
                 document.getElementById('distanceResult').textContent = distance.toFixed(1);
                 document.getElementById('priceResult').textContent = 'R$ ' + totalPrice.toFixed(2);
                 document.getElementById('resultsDisplay').classList.add('show');
 
-                // Store values for form submission
                 document.getElementById('freteForm').dataset.distance = distance.toFixed(1);
                 document.getElementById('freteForm').dataset.price = totalPrice.toFixed(2);
 
@@ -661,7 +1303,7 @@
         }
 
         function calculateHaversine(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Raio da Terra em km
+            const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -720,7 +1362,7 @@ Número: ${destinationNumber}
 ---
 _Solicitação enviada via Tele Já Express_`;
 
-            const whatsappNumber = '5551991042626'; // ALTERE ESTE NÚMERO
+            const whatsappNumber = '5511999999999'; // ALTERE ESTE NÚMERO
             const encodedMessage = encodeURIComponent(message);
             const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
@@ -728,7 +1370,6 @@ _Solicitação enviada via Tele Já Express_`;
 
             alert('Redirecionando para o WhatsApp! Sua solicitação será enviada automaticamente.');
 
-            // Reset form
             this.reset();
             document.querySelectorAll('.material-option').forEach(opt => opt.classList.remove('selected'));
             selectedMaterial = null;
@@ -737,3 +1378,4 @@ _Solicitação enviada via Tele Já Express_`;
     </script>
 </body>
 </html>
+
