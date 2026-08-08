@@ -494,6 +494,8 @@
 
     <script>
         let selectedMaterial = null;
+        let pickupAddress = '';
+        let destinationAddress = '';
         const materialPrices = {
             'envelope': 0,
             'pacote': 0.50,
@@ -545,6 +547,13 @@
                 displayElement.style.display = 'block';
                 displayElement.style.background = '#e8f5e9';
                 displayElement.style.color = '#2e7d32';
+
+                // Store address for form submission
+                if (type === 'pickup') {
+                    pickupAddress = fullAddress;
+                } else {
+                    destinationAddress = fullAddress;
+                }
 
                 if (document.getElementById('pickupCep').value && document.getElementById('destinationCep').value) {
                     calculateDistance();
@@ -695,12 +704,12 @@
 
 📦 *Tipo de Material:* ${materialNames[material]}
 
-📍 *Local de Coleta:*
-CEP: ${pickupCep}
+📍 *LOCAL DE COLETA:*
+${pickupAddress}
 Número: ${pickupNumber}
 
-🎯 *Local de Destino:*
-CEP: ${destinationCep}
+🎯 *LOCAL DE DESTINO:*
+${destinationAddress}
 Número: ${destinationNumber}
 
 📏 *Distância:* ${distance} km
@@ -711,7 +720,7 @@ Número: ${destinationNumber}
 ---
 _Solicitação enviada via Tele Já Express_`;
 
-            const whatsappNumber = '5551991042626'; // ALTERE ESTE NÚMERO
+            const whatsappNumber = '5511999999999'; // ALTERE ESTE NÚMERO
             const encodedMessage = encodeURIComponent(message);
             const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
